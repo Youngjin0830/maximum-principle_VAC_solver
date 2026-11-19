@@ -7,6 +7,7 @@ condition keeps every component in $[0,1]$ and is independent of $N$.
 ## Requirements
 
 * MATLAB (no additional toolboxes required)
+* A C compiler (optional, for the C versions of the convergence tests)
 * The 3D spatial convergence test with $M=1024$ needs a large amount of memory (about 35 GB for one array of size $1026^3\times4$)
 
 ## Folders
@@ -15,8 +16,8 @@ condition keeps every component in $[0,1]$ and is independent of $N$.
 * `Fig2_Stability_test_2D/` — Boundedness and discrete energy test in two dimensions (Figure 2).
 * `Fig3_Stability_test_3D/` — Boundedness and discrete energy test in three dimensions (Figure 3).
 * `Fig4_Components_test/` — Maximum and minimum values for $N=2,3,\ldots,7$ in two dimensions (Figure 4).
-* `Tab1_Temporal_convergence_test/` — Temporal convergence test in 1D, 2D, and 3D (Table 1).
-* `Tab2_Spatial_convergence_test/` — Spatial convergence test in 1D, 2D, and 3D (Table 2).
+* `Tab1_Temporal_convergence_test/` — Temporal convergence test in 1D, 2D, and 3D (Table 1). MATLAB (`.m`) and C (`.c`) versions.
+* `Tab2_Spatial_convergence_test/` — Spatial convergence test in 1D, 2D, and 3D (Table 2). MATLAB (`.m`) and C (`.c`) versions.
 
 ## Numerical method
 
@@ -44,6 +45,16 @@ Fig1_Stability_test_1D
 
 The figures are saved as EPS files in the same folder. The convergence tests print the
 errors and the convergence rates.
+
+The C versions of the convergence tests are compiled and run, for example, by
+
+```
+cd Tab1_Temporal_convergence_test
+cc -O3 -o Tab1_Temporal_convergence_test_3D Tab1_Temporal_convergence_test_3D.c -lm
+./Tab1_Temporal_convergence_test_3D
+```
+
+OpenMP can be enabled with the compiler option `-fopenmp` when it is available.
 
 The parameters, initial conditions, and output settings can be changed near the
 beginning of each script.
